@@ -1,16 +1,16 @@
 package me.dio.service.impl;
 
+import java.util.List;
+import static java.util.Optional.ofNullable;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import me.dio.domain.model.User;
 import me.dio.domain.repository.UserRepository;
 import me.dio.service.UserService;
 import me.dio.service.exception.BusinessException;
 import me.dio.service.exception.NotFoundException;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
-
-import static java.util.Optional.ofNullable;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -27,6 +27,7 @@ public class UserServiceImpl implements UserService {
         this.userRepository = userRepository;
     }
 
+    @Override
     @Transactional(readOnly = true)
     public List<User> findAll() {
         return this.userRepository.findAll();
